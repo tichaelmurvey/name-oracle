@@ -17,7 +17,7 @@ queryDb = async function (req, res) {
     .collection("listingsAndReviews")
     .find({ amenities: searchTerm })
     .toArray();
-
+  
   res.render("pages/index", { data });
 };
 

@@ -6,7 +6,9 @@
 <body>
     <%- include('../partials/header'); %> 
     <h1>Bring me to life</h1>
-    <p><%= data %> </p>
+    <% if(data) { %> 
+        <%- include('../partials/dataoutput', { data });  %>
+    <% } %>  
     <h2>Query maker</h2>
     <%- include('../partials/querymaker');  %> 
     <%- include('../partials/footer'); %> 

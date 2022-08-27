@@ -28,5 +28,5 @@ app.get("/hello_world", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("pages/index", { data: {} });
+  res.render("pages/index", { data: null });
 });
