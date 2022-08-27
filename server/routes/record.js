@@ -9,17 +9,19 @@ const router = express.Router();
 // This will help us connect to the database
 const dbo = require("../db/conn");
 
-router.use("/search-amenities/:amenity", (req, res, next) => {
+queryDb = async function (req, res) {
   const searchTerm = req.params.amenity;
   const dbConnection = dbo.getDb();
-  dbConnection
+
+  const data = await dbConnection
     .collection("listingsAndReviews")
     .find({ amenities: searchTerm })
-    .toArray((err, result) => {
-      if (err) throw err;
-      res.json(result);
-    });
-});
+    .toArray();
+
+  res.render("pages/index", { data });
+};
+
+router.get("/search-amenities/:amenity", queryDb);
 
 // router.use("/search-amenities/:amenity", (req, res, next) => {
 //   const searchParam = req.params.amenity;
