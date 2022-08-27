@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const path = require("path");
-const Eta = require("eta")
+const eta = require("eta")
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(require("./routes/record"));
 app.use(express.static("public"));
 
-app.set("view engine", "ejs");
+app.engine("eta", eta.renderFile);
+app.set("view engine", "eta");
 app.set("views", path.join(__dirname, "views"));
 
 // get driver connection
