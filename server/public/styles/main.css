@@ -58,8 +58,8 @@ body {
     outline: 2px solid black;
 }
 
-#go:hover, select:hover {
-    border-width: 4px;
+#go:hover, select:hover, nav li:hover, .button-list li:hover{
+    box-shadow: 3px 3px 0 0 rgb(43, 43, 43);
 }
 
 select {
@@ -73,7 +73,7 @@ select {
     cursor: inherit;
     line-height: inherit;
     outline: none;
-
+    cursor:pointer;
 }
 
 select::after {
@@ -91,5 +91,48 @@ option {
 h1{
     font-size: 3.5rem;
     font-weight: 400;
+}
+
+nav ul , .button-list{
+    font-size: 0.8em;
+    list-style: none;
+    display: flex;
+}
+
+nav ul {
+    justify-content: flex-end;
+
+}
+
+.button-list {
+    padding: 0;
+    margin: 0;
+    justify-content: flex-start;
+}
+
+
+
+nav li , .button-list li{
+    margin: 0 25px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.button-list li:first-child {
+    margin-left: 0;
+}
+
+nav li a , .button-list a{
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 5px 15px;
+}
+
+.bodytext {
+    font-size: 0.8em;
+    min-width: 50%;
+    max-width: 700px;
+    margin: auto;
 }
 

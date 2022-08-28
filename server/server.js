@@ -30,3 +30,11 @@ app.get("/hello_world", (req, res) => {
 app.get("/", (req, res) => {
   res.render("pages/index", { data: null });
 });
+
+app.get("/about", (req, res) => {
+  res.render("pages/about", { data: null });
+});
+
+app.get("/contact", (req, res) => {
+  res.render("pages/contact", { data: null });
+});
