@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const path = require("path");
-const ejs = require("ejs")
+const ejs = require("ejs");
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
@@ -13,7 +13,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// get driver connection
+// get driver connectio
 const dbo = require("./db/conn");
 
 app.listen(port, () => {
@@ -22,9 +22,6 @@ app.listen(port, () => {
     if (err) console.error(err);
   });
   console.log(`Server is running on port: ${port}`);
-});
-app.get("/hello_world", (req, res) => {
-  res.send("Hello World!");
 });
 
 app.get("/", (req, res) => {
