@@ -22,7 +22,6 @@ app.use(require("./routes/record"));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-query.findUser()
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

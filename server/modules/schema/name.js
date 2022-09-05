@@ -1,9 +1,10 @@
 const mongoose = require("mongoose")
 
 const nameSchema = new mongoose.Schema({
-    Name: String,
-    Type: String,
-    Setting: []
+    name: String,
+    type: [],
+    setting: [],
+    role: []
 })
 
 module.exports = mongoose.model("Name", nameSchema)

@@ -9,9 +9,9 @@ exports.addUser = async function run() {
     console.log(testname)
 }
 
-exports.findUser = async function () {
+exports.findNames = async function (type_input, setting_input, role_input) {
     try {
-        const name_result = await Name.find({Type: "First", Setting: "High fantasy"})
+        const name_result = await Name.find({type: type_input, setting: setting_input, role: role_input})
         console.log(name_result)
     } catch(error) {
         console.log(error.message)
