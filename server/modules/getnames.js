@@ -1,4 +1,6 @@
 
+const queries = require("./queries")
+
 //Constructor for name pattern objects, which are a single possible name structure
 class namePattern { 
     constructor(pattern, weight){
@@ -60,12 +62,13 @@ let name_patterns = {
 exports.query = function (role, setting, number) {
     let pattern_system = getPatternSystem(role, number);
     let types = getTypes(pattern_system);
-    someDataRequest(types, commoner, setting);
+    
+    queries.findNames(types, role, setting);
 }
 
 function getTypes(pattern_system){
     let types = [];
-    
+
     pattern_system.patterns.forEach((pattern, index) => {
         if(pattern_system.quant[index]){
             pattern.params.forEach(param => {
