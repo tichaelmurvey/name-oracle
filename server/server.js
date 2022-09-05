@@ -3,7 +3,14 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const ejs = require("ejs");
-require("dotenv").config({ path: "./config.env" });
+const mongoose = require('mongoose')
+require('dotenv').config()
+
+mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true})
+const db = mongoose.connection
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('Connected to database'))
+
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -13,14 +20,8 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// get driver connectio
-const dbo = require("./db/conn");
 
 app.listen(port, () => {
-  // perform a database connection when server starts
-  dbo.connectToServer(function (err) {
-    if (err) console.error(err);
-  });
   console.log(`Server is running on port: ${port}`);
 });
 

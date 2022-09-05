@@ -2,8 +2,6 @@ const express = require("express");
 
 const router = express.Router();
 
-const dbo = require("../db/conn");
-
 queryDb = async function (req, res) {
   const searchTerm = req.params.amenity;
   const dbConnection = dbo.getDb();
