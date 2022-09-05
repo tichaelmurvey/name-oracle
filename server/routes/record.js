@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const getnames = require("../modules/getnames.js")
-const dbo = require("../db/conn");
 
 queryDb = async function (req, res) {
   const searchTerm = req.params.amenity;

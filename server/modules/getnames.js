@@ -65,11 +65,7 @@ exports.query = function (role, setting, number) {
 
 function getTypes(pattern_system){
     let types = [];
-    console.log("pattern system fed to types:")
-    console.log(pattern_system);
-    console.log("Patterns in the pattern system:")
-    console.log(pattern_system.patterns);
-
+    
     pattern_system.patterns.forEach((pattern, index) => {
         if(pattern_system.quant[index]){
             pattern.params.forEach(param => {
@@ -94,24 +90,20 @@ function getPatternSystem(role, number){
     total_weight = patterns.reduce((x, y) => {
         return x + y.weight;
     }, 0);
-    console.log("total_weight " + total_weight)
 
     if(total_weight <= number){
-        console.log("Space in the recs, filling explicitly")
         //Fill the slots with name patterns by literally just dumping in a number equal to the weight until no more fit
         let times = Math.floor(number/total_weight);
         pattern_system.quant = patterns.map((pattern) => {
             return pattern.weight*times;
         });
         unfilled -= total_weight*times;
-        console.log("Filled " + times + ' times. ' + unfilled + ' slots remaining.');
     } else {
         pattern_system.quant = Array(patterns.length).fill(0);
     }
 
     if(unfilled){
         //Fill the remaining slots with randomly selected patterns
-        console.log('Now filling randomly. Unfilled spaces ' + unfilled);
         let rollable_table = patterns.reduce((passthrough, pattern) => {
             return passthrough.concat(
                 Array(pattern.weight)
@@ -133,7 +125,3 @@ function getPatternSystem(role, number){
     
     return(pattern_system);
 }
-
-//console.log(getPatternSystem("knight", 17));
-console.log("types: " + getTypes(getPatternSystem("knight", 1)));
-//console.log(getPatternSystem("knight", 100).patterns);
