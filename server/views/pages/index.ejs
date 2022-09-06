@@ -1,38 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head'); %>
-
-<body>
-    <%- include('../partials/header'); %> 
+  <%- include('../partials/head'); %> <%console.log(roles) %>
+  <body>
+    <%- include('../partials/header'); %>
     <div class="intro">
-        <img src="images/crystalball.png" alt="Crystal ball">
-        <h1>The Name Oracle</h1>
+      <img src="images/crystalball.png" alt="Crystal ball" />
+      <h1>The Name Oracle</h1>
     </div>
-    <% if(data) { %> 
-        <%- include('../partials/dataoutput', { data });  %>
-    <% } %>  
     <div class="question-body">
-        <span>
-            I need a 
-        </span>
-        <select name="role" id="role">
-            {{/*  Make this dyanmic, populate from database on page load */}}
-            <option value="hello">hello</option>
-            <option value="hello">hello</option>
-            <option value="hello">hello</option>
-            <option value="hello">hello</option>
-        </select>
-        <span> from a </span>
-        <select name="setting" id="setting">
-            <option value="hello">hello</option>
-            <option value="hello">hello</option>
-            <option value="hello">hello</option>
-            <option value="hello">hello</option>
-        </select>
-        <span> setting</span>
-    </div> 
+      <span> I need a </span>
+      <%- include('../partials/selector', {data: roles, name: "role"}); %>
+      <span> from a </span>
+      <%- include('../partials/selector', {data: settings, name: "setting"}); %>
+
+      <span> setting</span>
+    </div>
     <a href="#" id="go">Go</a>
-    <%- include('../partials/footer'); %> 
+    <%- include('../partials/footer'); %>
     <script src="scripts/selectHandler.js"></script>
-</body>
+  </body>
 </html>

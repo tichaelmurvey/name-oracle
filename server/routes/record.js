@@ -1,24 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const getnames = require("../modules/getnames.js")
+const queries = require("../modules/queries.js")
 
-queryDb = async function (req, res) {
-  const searchTerm = req.params.amenity;
-  const dbConnection = dbo.getDb();
+async function renderUnique(res){
+  const unique_roles = await queries.getUnique("role")
+  const unique_settings = await queries.getUnique("setting")
+  res.render("pages/unique", {data: unique_roles})
+}
 
-  const data = await dbConnection
-    .collection("listingsAndReviews")
-    .find({ amenities: searchTerm })
-    .toArray();
-
-  res.render("pages/index", { data });
-};
-
-router.get("/search-amenities/:amenity", queryDb);
+async function renderHome(res){
+  const unique_roles = await queries.getUnique("role")
+  const unique_settings = await queries.getUnique("setting")
+  res.render("pages/index", {roles: unique_roles, settings: unique_settings});
+}
 
 router.get("/", (req, res) => {
-  res.render("pages/index", { data: null });
+  renderHome(res)
 });
+
+router.get("/unique", (req, res) => {
+  renderUnique(res)
+})
 
 router.get("/about", (req, res) => {
   res.render("pages/about");
