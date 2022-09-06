@@ -18,22 +18,25 @@ class namePattern {
         this.weight = weight;
     }
     //Generate name outputs using this pattern
-    makeNames(data, quant){
+    makeNames(name_data, quant){
         let names = [];
-        for(i=0; i<quant; i++){
-            let name_output = this.sequence;
+        for(let i=0; i<quant; i++){
+            let name_output = [...this.sequence];
             this.params.forEach((param) => {
-                //Get the relevant list of names (pending data structure)
-                list = data[param]
+                //Get the relevant list of names
+                let list = name_data.filter((name_item) => {
+                    return "_".concat(name_item.type) == param
+                })
                 //Get a random item from the list (pending data structure)
-                item_index = Math.round(Math.random()*(list.length-1));
-                item = list[item_index];
+                let item_index = Math.round(Math.random()*(list.length-1));
+                let item = list[item_index];
                 //Remove the used item from the array. 
                 //NOTE: maybe come back here and create a "reuse" condition for some lists
-                list.splice(index, 1);
+                list.splice(item_index, 1);
                 //Replace param placeholder in name with item name value (pending data structure)
-                name_output[indexOf(param)] = item.name;
+                name_output[name_output.indexOf(param)] = item.name;
             });
+            name_output = name_output.join(" ")
             names.push(name_output);
         }
         return(names);
@@ -42,30 +45,24 @@ class namePattern {
 
 let name_patterns = {
     knight: [
-        new namePattern("_firstname of _lastname", 2),
-        new namePattern("Sir _Firstname , _Lastname of _location", 3),
-        new namePattern("_Firstname , the _heraldry knight", 1),
-        new namePattern("Sir _Firstname _Lastname", 3),
-        new namePattern("Sir _Firstname the _adjective", 2),
-        new namePattern("_Firstname _Lastname , the knight of _Heraldry", 1)
+        new namePattern("_First of _Last", 2)//,
+        // new namePattern("Sir _First , _Lastname of _location", 3),
+        // new namePattern("_First , the _heraldry knight", 1),
+        // new namePattern("Sir _First _Last", 3),
+        // new namePattern("Sir _First the _adjective", 2),
+        // new namePattern("_First _Last , the knight of _Heraldry", 1)
     ],
     commoner: [
-        new namePattern("_Firstname _Lastname", 10),
-        new namePattern("Old _Firstname", 1),
-        new namePattern("Granny _Lastname", 1),
-        new namePattern("Little _Firstname", 1),
-        new namePattern("Young _Firstname", 1),
+        new namePattern("_First _Last", 10),
+        new namePattern("Old _First", 1),
+        new namePattern("Granny _Last", 1),
+        new namePattern("Little _First", 1),
+        new namePattern("Young _First", 1),
     ],
     monarch: []
 }
 
-exports.query = function (role, setting, number) {
-    let pattern_system = getPatternSystem(role, number);
-    let types = getTypes(pattern_system);
-    
-    queries.findNames(types, role, setting);
-}
-
+//For a given pattern system, returns an array of distinct name types required by any pattern which occurs more than 0 times
 function getTypes(pattern_system){
     let types = [];
 
@@ -82,8 +79,11 @@ function getTypes(pattern_system){
     return(types);
 }
 
+//For a given role, returns a set of name patterns, and the number required for each one
 function getPatternSystem(role, number){
     let patterns = name_patterns[role];
+    console.log("Got patterns for role. Example pattern:")
+    console.log(patterns[0])
     let unfilled = number;
     let pattern_system = {
         patterns: patterns,
@@ -127,4 +127,44 @@ function getPatternSystem(role, number){
     }
     
     return(pattern_system);
+}
+
+exports.getNames = async function(role, setting, num){
+    try {
+        console.log("getnames function Received request for names")
+        let pattern_system = getPatternSystem(role, num); //Craete the pattern system
+        console.log("Made pattern system. Here's an example pattern:")
+        console.log(pattern_system.patterns[0])
+        let types = getTypes(pattern_system); //List the distinct types required
+        console.log("Got types list. Here's an example of a required type:")
+        console.log(types[0])
+        //Strip leading characters from types
+        let type_requests = types
+        type_requests.forEach((type, index) => {
+            type_requests[index] = type.replace("_", "")
+        })
+        console.log("Removed leading tag indicator from types. Heres an example of a cleaned type:")
+        console.log(type_requests[0])
+        console.log("Requesting name data with variables:")
+        console.log("Types: " + type_requests)
+        console.log("Role: " + role)
+        console.log("Setting: " + setting)
+        let name_data = await queries.findNamesManyTypes(type_requests, setting, role); //Get the name data from the server
+        console.log("Got " + name_data.length + " names. Here's an example name:")
+        console.log(name_data[0])
+        let names = []
+        pattern_system.patterns.forEach((pattern, index) => {
+            let current_quant = pattern_system.quant[index]
+            if(current_quant){
+                names.push(...pattern.makeNames(name_data, current_quant))
+            }
+            console.log("Added " + current_quant + " names in pattern:")
+            console.log(pattern)
+        });
+        console.log("Got the names. Here's an example:")
+        console.log(names)
+        return(names)
+    } catch(error) {
+        console.log(error.message)
+    }
 }

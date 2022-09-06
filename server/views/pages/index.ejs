@@ -16,6 +16,11 @@
       <span> setting</span>
     </div>
     <a href="#" id="go">Go</a>
+    <div class="results">
+      <% if(locals.results){ %> <% results.forEach((result) => { %>
+      <p><%=result%></p>
+      <%})%> <%}%>
+    </div>
     <%- include('../partials/footer'); %>
     <script src="scripts/selectHandler.js"></script>
   </body>
