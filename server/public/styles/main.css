@@ -15,6 +15,7 @@ body {
     padding: 0;
     font-size: 2em;
     line-height: 1.5;
+    text-align: center;
 }
 
 *,
@@ -41,9 +42,8 @@ body {
     text-align: center;
 }
 
-#go {
-    display: block;
-    width: min-content;
+.inpage-button {
+    display: inline-block;
     margin: 50px auto;
     color: black;
     font-size: 1.7em;
@@ -74,15 +74,17 @@ select {
     line-height: inherit;
     outline: none;
     cursor:pointer;
+    text-transform: capitalize;
+    text-align: center;
 }
 
-select::after {
+/* select::after {
     content: "";
     width: 0.8em;
     height: 0.5em;
     background-color: black;
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-  }
+  } */
 
 option {
     background-color: transparent;
@@ -136,3 +138,14 @@ nav li a , .button-list a{
     margin: auto;
 }
 
+.results {
+    display: block;
+    margin: auto;
+    min-width: 30%;
+    width: 200px;
+    border: 3px solid black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    text-transform: capitalize;
+}

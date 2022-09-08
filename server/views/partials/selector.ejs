@@ -1,5 +1,7 @@
 <select name="<%= name %>" id="<%= name %>">
-  <% data.forEach(function(item){ %>
-  <option value="<%= item %>"><%= item %></option>
-  <% }); %>
+  <% data.forEach(function(item){ if(item != "all"){ %>
+  <option value="<%= item %>" <%if(selected_data.includes(item)){ %>
+    selected="selected"<% } %>> <%= item %>
+  </option>
+  <% }}); %>
 </select>

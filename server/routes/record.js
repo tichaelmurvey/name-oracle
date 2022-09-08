@@ -12,7 +12,7 @@ async function renderUnique(res){
 async function renderHome(res){
   const unique_roles = await queries.getUnique("role")
   const unique_settings = await queries.getUnique("setting")
-  res.render("pages/index", {roles: unique_roles, settings: unique_settings});
+  res.render("pages/index", {roles: unique_roles, settings: unique_settings, selected: []});
 }
 
 async function renderResults(req, res){
@@ -20,9 +20,10 @@ async function renderResults(req, res){
   const unique_settings = await queries.getUnique("setting")
   let role = req.query.role;
   let setting = req.query.setting;
+  let quant = req.query.quant;
   console.log("Requested " + role + " from setting " + setting);
-  const names = await getnames.getNames(role, setting, 30)
-  res.render("pages/index", {roles: unique_roles, settings: unique_settings, results: names});
+  const names = await getnames.getNames(role, setting, quant)
+  res.render("pages/index", {roles: unique_roles, settings: unique_settings, results: names, selected: [req.query.role, req.query.setting]});
 }
 
 router.get("/", (req, res) => {

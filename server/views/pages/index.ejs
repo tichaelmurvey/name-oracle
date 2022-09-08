@@ -9,19 +9,25 @@
     </div>
     <div class="question-body">
       <span> I need a </span>
-      <%- include('../partials/selector', {data: roles, name: "role"}); %>
+      <%- include('../partials/selector', {data: roles, name: "role",
+      selected_data: selected}); %>
       <span> from a </span>
-      <%- include('../partials/selector', {data: settings, name: "setting"}); %>
+      <%- include('../partials/selector', {data: settings, name: "setting",
+      selected_data: selected}); %>
 
       <span> setting</span>
     </div>
-    <a href="#" id="go">Go</a>
+    <a href="#" id="go" class="inpage-button">Go</a>
+    <% if(locals.results){ %>
     <div class="results">
-      <% if(locals.results){ %> <% results.forEach((result) => { %>
+      <% results.forEach((result) => { %>
       <p><%=result%></p>
-      <%})%> <%}%>
+      <%})%>
     </div>
-    <%- include('../partials/footer'); %>
+    <div class="more">
+      <a href="#" id="more" class="inpage-button">Show me more</a>
+    </div>
+    <%}%> <%- include('../partials/footer'); %>
     <script src="scripts/selectHandler.js"></script>
   </body>
 </html>

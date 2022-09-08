@@ -14,9 +14,9 @@ exports.findNames = async function (type_input, setting_input, role_input) {
 
 exports.findNamesManyTypes = async function (types, setting_input, role_input) {
     try {
-        let name_result = await Name.find({type: { $in: types}, setting: setting_input, role: role_input})
-        name_result = name_result.filter(Boolean) 
-        console.log("Search query done.")
+        let name_result = await Name.find({type: { $in: types}, setting: { $in: [setting_input, "all"] }, role: { $in: [role_input, "all"]}})
+        //name_result = name_result.filter(Boolean) 
+        console.log("Search query done. ")
         return(name_result)
     } catch(error) {
         console.log("Find names many types threw: " + error.message)
