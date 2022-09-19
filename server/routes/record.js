@@ -22,8 +22,9 @@ async function renderResults(req, res){
   let setting = req.query.setting;
   let quant = req.query.quant;
   console.log("Requested " + role + " from setting " + setting);
-  const names = await getnames.getNames(role, setting, quant)
+  const names = await getnames.getNames(role, setting, quant);
   res.render("pages/index", {roles: unique_roles, settings: unique_settings, results: names, selected: [req.query.role, req.query.setting]});
+
 }
 
 router.get("/", (req, res) => {

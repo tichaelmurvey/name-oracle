@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Dekko&display=swap');
+
 :root {
     --select-border: #777;
     --select-focus: blue;
@@ -6,7 +9,7 @@
   }
 
 body {
-    font-family: 'Itim', cursive;
+    font-family: 'Dekko', cursive;
     background-image: url("graph-paper-background.jpg");
     background-repeat: repeat;
     background-size: 200px 200px;
@@ -25,7 +28,6 @@ body {
 }
 
 .intro {
-    margin-top: 100px;
     width: 100%;
     text-align: center;
 }

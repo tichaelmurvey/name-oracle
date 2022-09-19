@@ -7,7 +7,7 @@ class namePattern {
         //Array of data parameters the pattern needs
         let params = [];
         //Sequence of params and also static text, in order.
-        let sequence = pattern.split(" ");
+        let sequence = pattern.split(".");
         sequence.forEach((fragment) => {
             if(fragment.startsWith("_")){
                 params.push(fragment);
@@ -36,7 +36,7 @@ class namePattern {
                 //Replace param placeholder in name with item name value (pending data structure)
                 name_output[name_output.indexOf(param)] = item.name;
             });
-            name_output = name_output.join(" ")
+            name_output = name_output.join("")
             names.push(name_output);
         }
         return(names);
@@ -45,58 +45,59 @@ class namePattern {
 
 let name_patterns = {
     knight: [
-        new namePattern("_first of _last", 2),
-        new namePattern("Sir _first  _last of _location", 3),
-        new namePattern("_First , the _heraldry knight", 1),
-        new namePattern("Sir _first _last", 3),
-        new namePattern("Sir _first the _adjective", 2),
-        new namePattern("_first _last , the knight of _heraldry", 1),
+        //new namePattern("_first of _location", 2),
+        //new namePattern("Sir _first  _last of _location", 3),
+        new namePattern("_first., the ._heraldry. knight", 1),
+        new namePattern("Sir ._first. ._last", 4),
+        new namePattern("Sir ._first. the ._adjective", 2),
+        new namePattern("_first. ._last., the knight of ._heraldry.s", 1),
     ],
     commoner: [
-        new namePattern("_first _last", 40),
-        new namePattern("Old _first", 1),
-        new namePattern("Granny _last", 1),
-        new namePattern("Little _first", 1),
-        new namePattern("Young _first", 1),
+        new namePattern("_first. ._last", 40),
+        new namePattern("Old ._first", 1),
+        new namePattern("Granny ._last", 1),
+        new namePattern("Little ._first", 1),
+        new namePattern("Young ._first", 1),
     ],
     monarch: [
-        new namePattern("King _first _last", 5),
-        new namePattern("King _first the _numeral", 5),
-        new namePattern("King _first , _numeral of his name", 2),
-        new namePattern("Queen _first _last", 5),
-        new namePattern("Queen _first the _numeral", 5),
-        new namePattern("Queen _first , _numeral of her name", 2),
-        new namePattern("King _first the _adjective", 4),
-        new namePattern("Queen _first the _adjective", 4),
-        new namePattern("_honorific King _first _last", 4),
-        new namePattern("_honorific Queen _first _last", 4)
+        new namePattern("King ._first. ._last", 5),
+        new namePattern("King ._first. ._numeral", 5),
+        new namePattern("Queen ._first. ._numeral", 5),
+        new namePattern("King ._first. the ._number", 5),
+        new namePattern("King ._first., ._number. of his name", 2),
+        new namePattern("Queen ._first. ._last", 5),
+        new namePattern("Queen ._first. the ._number", 5),
+        new namePattern("Queen ._first., ._number. of her name", 2),
+        new namePattern("King ._first. the ._adjective", 4),
+        new namePattern("Queen ._first. the ._adjective", 4),
+        new namePattern("._honorific. King ._first. ._last", 4),
+        new namePattern("_honorific. Queen ._first. ._last", 4)
     ],
     noble: [
-        new namePattern("_first _last", 5),
-        new namePattern("_first , _title of _location", 5),
-        new namePattern("_first of house _last", 5),
-        new namePattern("_title _first", 5),
-        new namePattern("_title _last", 5),
-        new namePattern("_honorific _first _last , _title of _location", 5)
+        new namePattern("_first. ._last", 5),
+        //new namePattern("_first , _title of _location", 5),
+        new namePattern("_first. of house ._last", 5),
+        new namePattern("_title. ._first", 5),
+        new namePattern("_title. ._last", 5),
+        //new namePattern("_honorific _first _last , _title of _location", 5)
     ],
     wizard: [
-        new namePattern("_first _last", 5),
-        new namePattern("_first the _colour", 5),
-        new namePattern("_first , Master of _element", 5),
-        new namePattern("_first of _location", 5),
-        new namePattern("_first the _adjective")
+        new namePattern("_first. ._last", 6),
+        new namePattern("_first. the ._colour", 5),
+        new namePattern("_first., Master of ._element", 3),
+        //new namePattern("_first of _location", 5),
+        new namePattern("_first. the ._adjective", 3)
     ],
     innkeeper: [
-        new namePattern("_first _last", 20),
-        new namePattern("Old _first", 1),
-        new namePattern("Granny _last", 1),
-        new namePattern("Little _first", 1),
-        new namePattern("Young _first", 1),
+        new namePattern("_first. ._last", 20),
+        new namePattern("Old ._first", 1),
+        new namePattern("Granny ._last", 1),
+        new namePattern("Young ._first", 1),
     ],
     hero:[
-        new namePattern("_first _last", 30),
-        new namePattern("_first the _adjective", 2),
-        new namePattern("_colour _first", 1),
+        new namePattern("_first. ._last", 30),
+        new namePattern("_first. the ._adjective", 2),
+        new namePattern("_colour. ._first", 1),
     ]
 
 }
@@ -170,7 +171,7 @@ function getPatternSystem(role, number){
 exports.getNames = async function(role, setting, num){
     try {
         console.log("getnames function Received request for names")
-        let pattern_system = getPatternSystem(role, num); //Craete the pattern system
+        let pattern_system = getPatternSystem(role, num); //Create the pattern system
         console.log("Made pattern system with " + pattern_system.length + " patterns. Here's an example pattern:")
         console.log(pattern_system[0].pattern)
         let types = getTypes(pattern_system); //List the distinct types required
@@ -186,6 +187,9 @@ exports.getNames = async function(role, setting, num){
         console.log("Role: " + role)
         console.log("Setting: " + setting)
         let name_data = await queries.findNamesManyTypes(type_requests, setting, role); //Get the name data from the server
+        if(!name_data) {
+            return false;
+        }
         console.log("Got " + name_data.length + " names. Here's an example name:")
         console.log(name_data[0])
         let names = []
@@ -194,6 +198,7 @@ exports.getNames = async function(role, setting, num){
             console.log("Added " + item.quant + " names in pattern:")
             console.log(item.pattern)
         });
+        shuffle(names);
         console.log("Created " + names.length + " names. Here's an example:")
         console.log(names[0])
         return(names)
@@ -201,3 +206,21 @@ exports.getNames = async function(role, setting, num){
         console.log(error.message)
     }
 }
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }

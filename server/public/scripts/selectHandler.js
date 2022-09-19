@@ -12,7 +12,9 @@ document
 console.log(queryURL);
 
 document.querySelector("#go").setAttribute("href", queryURL);
-document.querySelector("#more").setAttribute("href", queryURLmany);
+if(document.querySelector('#more')){
+  document.querySelector("#more").setAttribute("href", queryURLmany);
+}
 
 const selectHandler = (event) => {
   const elm = event.currentTarget;
