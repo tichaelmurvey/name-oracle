@@ -20,13 +20,16 @@
     <a href="#" id="go" class="inpage-button">Go</a>
 
     <% if(locals.results){ %>
-    <div class="results">
+    <div class="results <% if(locals.results.length > 1){ %>many<%} %>">
       <% results.forEach((result) => { %>
       <p><%=result%></p>
       <%})%>
     </div>
     <div class="more">
-      <a href="#" id="more" class="inpage-button">Show me more</a>
+      <a href="#" id="more" class="inpage-button"
+        ><% if(locals.results.length > 1){ %>Refresh<%} else {%>Show me
+        more<%}%></a
+      >
     </div>
     <%} else if(locals.results === false){%>
     <div class="results">
