@@ -20,6 +20,8 @@
     <a href="#" id="go" class="interactive inpage-button">Go</a>
 
     <% if(locals.results){ %>
+      <div class="results-wrapper">
+        <div class="results-main">
     <div class="results <% if(locals.results.length > 1){ %>many<%} %>">
       <% results.forEach((result) => { %>
       <p><%=result%></p>
@@ -31,6 +33,10 @@
         more<%}%></a
       >
     </div>
+
+    </div>
+
+  </div>
     <%} else if(locals.results === false){%>
     <div class="results">
       <p>No results found</p>

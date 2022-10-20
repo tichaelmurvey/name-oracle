@@ -53,31 +53,51 @@ body {
     line-height: 1.2;
     border: 3px solid black;
     padding: 0 25px;
-    border-radius: 5px;
+    border-radius: 8px;
     text-decoration: none;
+    background: none;
+}
+
+.image-button {
+    border: none;
+    cursor: pointer;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.image-button img {
+    width: 50px;
 }
 
 .interactive {
     box-shadow: 3px 3px 0 0 rgb(43, 43, 43);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    transition: top 250ms ease, left 250ms ease;
 }
 
 *:focus {
     outline: 2px solid black;
 }
 
-#go:hover, select:hover, nav li:hover, .button-list li:hover, .inpage-button:hover{
-    /* something */
+#go:hover, select:hover, nav li:hover, .button-list li:hover, .interactive:hover{
+    box-shadow: 1px 1px 0 0 rgb(43, 43, 43);
+    position: relative;
+    top: 2px;
+    left: 2px;
+    transition: top 250ms ease, left 250ms ease;
 }
 
 select {
     appearance: none;
     border: 3px solid black;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     background-color: transparent;
     font-family: inherit;
     font-size: inherit;
-    cursor: inherit;
     line-height: inherit;
     outline: none;
     cursor:pointer;
@@ -85,12 +105,26 @@ select {
     text-align: center;
 }
 
+.results-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+/* .results-wrapper::before {
+    content: "";
+    width: 50px;
 
+} */
+
+.results-main {
+    margin: 0 25px;
+}
 @media screen and (max-width: 700px){
     select {
         display: block;
         margin: auto;
     }
+
 }
 /* select::after {
     content: "";
@@ -130,7 +164,7 @@ nav ul {
 nav li , .button-list li{
     margin: 0 25px;
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .button-list li:first-child {
@@ -156,7 +190,7 @@ nav li a , .button-list a{
     margin: auto;
     width: max-content;
     border: 3px solid black;
-    border-radius: 10px;
+    border-radius: 8px;
     text-align: center;
     font-size: 1.5em;
     text-transform: capitalize;
@@ -169,6 +203,9 @@ nav li a , .button-list a{
     font-size: 1em;
 }
 
+.results p {
+    margin: 12px;
+}
 @media screen and (max-width: 700px) {
  .results {
      columns: 1;

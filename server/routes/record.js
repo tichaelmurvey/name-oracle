@@ -28,7 +28,11 @@ async function renderResults(req, res){
 }
 
 router.get("/", (req, res) => {
-  renderHome(res)
+  if(req.query.role && req.query.setting){
+    renderResults(req, res);
+  } else {
+    renderHome(res)
+  }
 });
 
 router.get("/unique", (req, res) => {
@@ -41,10 +45,6 @@ router.get("/about", (req, res) => {
 
 router.get("/contact", (req, res) => {
   res.render("pages/contact");
-});
-
-router.get("/names", (req, res) => {
-  renderResults(req, res)
 });
 
 module.exports = router;

@@ -1,5 +1,5 @@
-const queryURL = new URL("/names", window.location);
-const queryURLmany = new URL("/names", window.location);
+const queryURL = new URL("/", window.location);
+const queryURLmany = new URL("/", window.location);
 queryURL.searchParams.set("quant", 1);
 queryURLmany.searchParams.set("quant", 30);
 
