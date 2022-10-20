@@ -57,12 +57,16 @@ body {
     text-decoration: none;
 }
 
+.interactive {
+    box-shadow: 3px 3px 0 0 rgb(43, 43, 43);
+}
+
 *:focus {
     outline: 2px solid black;
 }
 
 #go:hover, select:hover, nav li:hover, .button-list li:hover, .inpage-button:hover{
-    box-shadow: 3px 3px 0 0 rgb(43, 43, 43);
+    /* something */
 }
 
 select {

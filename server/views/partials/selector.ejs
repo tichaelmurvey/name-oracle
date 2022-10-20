@@ -1,4 +1,4 @@
-<select name="<%= name %>" id="<%= name %>">
+<select name="<%= name %>" id="<%= name %>" class="interactive">
   <% data.forEach(function(item){ if(item != "all"){ %>
   <option value="<%= item %>" <%if(selected_data.includes(item)){ %>
     selected="selected"<% } %>> <%= item.replace("_", " ") %>
