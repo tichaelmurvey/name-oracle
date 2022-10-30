@@ -8,6 +8,9 @@
     --select-arrow: var(--select-border);
   }
 
+  html, body {
+    min-height: 95vh;
+  }
 body {
     font-family: 'Dekko', cursive;
     background-image: url("graph-paper-background.jpg");
@@ -19,6 +22,9 @@ body {
     font-size: 1.7em;
     line-height: 1.5;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 95vh;
 }
 
 *,
@@ -216,4 +222,56 @@ nav li a , .button-list a{
 
 .results.many > p:first-child {
     margin-top: 0;
+}
+
+
+.button-styles li{
+    list-style: none;
+    margin: 0 12px;
+}
+
+.button-styles li a {
+    margin: 12px 0;
+}
+
+.button-styles {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-bottom: 150px;
+}
+
+footer {
+    margin-top: auto;
+    width: 100%;
+    min-height: 200px;
+    text-align: center;
+}
+
+.mailer {
+    margin: auto;
+    max-width: 600px;
+}
+
+.mailer input {
+    display: block;
+    margin: auto;
+    min-width: 250px;
+    min-height: 40px;
+    font-family: 'Dekko', cursive;
+    font-size: 1em;
+    padding: 8px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 8px;
+
+}
+
+#mc-embedded-subscribe {
+    font-family: 'Dekko', cursive;
+    font-size: 1.2em;
 }

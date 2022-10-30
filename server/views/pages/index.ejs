@@ -3,6 +3,7 @@
   <%- include('../partials/head'); %> <%console.log(roles) %>
   <body>
     <%- include('../partials/header'); %>
+    <main>
     <div class="intro">
       <img src="images/crystalball.png" alt="Crystal ball" />
       <h1>The Name Oracle</h1>
@@ -35,13 +36,15 @@
     </div>
 
     </div>
-
+  
   </div>
     <%} else if(locals.results === false){%>
     <div class="results">
       <p>No results found</p>
     </div>
-    <%}%> <%- include('../partials/footer'); %>
+    <%}%>
+  </main>
+    <%- include('../partials/footer'); %>
     <script src="scripts/selectHandler.js"></script>
   </body>
 </html>
