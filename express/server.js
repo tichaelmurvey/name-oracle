@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const serverless = require("serverless-http");
 const cors = require("cors");
 const path = require("path");
 const ejs = require("ejs");
@@ -22,6 +23,9 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server is running on port: ${port}`);
+// });
+
+module.exports = app;
+module.exports.handler = serverless(app);

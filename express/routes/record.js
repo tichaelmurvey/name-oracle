@@ -3,12 +3,6 @@ const router = express.Router();
 const getnames = require("../modules/getnames.js")
 const queries = require("../modules/queries.js")
 
-async function renderUnique(res){
-  const unique_roles = await queries.getUnique("role")
-  const unique_settings = await queries.getUnique("setting")
-  res.render("pages/unique", {data: unique_roles})
-}
-
 async function renderHome(res){
   const unique_roles = await queries.getUnique("role")
   const unique_settings = await queries.getUnique("setting")
@@ -34,10 +28,6 @@ router.get("/", (req, res) => {
     renderHome(res)
   }
 });
-
-router.get("/unique", (req, res) => {
-  renderUnique(res)
-})
 
 router.get("/about", (req, res) => {
   res.render("pages/about");

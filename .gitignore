@@ -1,6 +1,7 @@
-server/.env
-server/node_modules
-server/config.env
+functions
+node_modules
+.env
+config.env
 node_modules/.package-lock.json
 node_modules/eta/LICENSE
 node_modules/eta/package.json
@@ -46,3 +47,4 @@ node_modules/eta/dist/types/storage.d.ts.map
 node_modules/eta/dist/types/utils.d.ts
 node_modules/eta/dist/types/utils.d.ts.map
 package-lock.json
+node_modules
