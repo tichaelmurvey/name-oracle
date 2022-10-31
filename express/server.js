@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(require("./routes/record"));
-app.use(express.static("public"));
+app.use(express.static("express/public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
