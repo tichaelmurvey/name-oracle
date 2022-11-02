@@ -6,7 +6,7 @@ const path = require("path");
 const ejs = require("ejs");
 const mongoose = require('mongoose')
 const query = require("./modules/queries")
-// require('dotenv').config()
+require('dotenv').config()
 
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true})
 const db = mongoose.connection
@@ -23,9 +23,8 @@ app.use(express.static("express/public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// app.listen(port, () => {
-//   console.log(`Server is running on port: ${port}`);
-// });
+const PORT = process.env.PORT
+app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`))
 
-module.exports = app;
-module.exports.handler = serverless(app);
+// module.exports = app;
+// module.exports.handler = serverless(app);
