@@ -6,9 +6,33 @@
     <main>
     <div class="bodytext">
         <h1>About</h1>
-
-        <p>This site was made with love by Michael Turvey.</p>
-        <p>You can find Michael on:</p>
+        <h2>Why did you make this?</h2>
+        <p>I made it because I wanted to use it. I have used many name generation tools, and loved many of them, but I noticed some common shortcoming which I thought I could solve.</p>
+        <ul>
+            <li>Many tools seemed to run out of original names fairly quickly.</li>
+            <li>Many tools pull from existing IP, which can be distracting or unhelpful in many contextx.</li>
+            <li>I couldn't seem to find a (free) tool that allowed specific combinations of setting and role, with unique name patterns for each.</li>
+        </ul>
+        <p>That being said, I absolutely have not used every tool on the web. There might be one out there that does all this, even better than mine! Feel free to get in touch if you know of one.</p>
+        <h2>How does it work?</h2>
+        <p>There's a database full of names with specific tags attached, for example:</p>
+        <p>Name: Jane</p>
+        <p>Type: First</p>
+        <p>Role: Any</p>
+        <p>Setting: Medieval, low fantasy, modern</p>
+        <p>When you make a query, the app gets a bunch of "name patterns" tagged with that setting and role. For example, if you ask for a knight, it might grab:</p>
+        <p>Sir [First] of house [Last].</p>
+        <p>Then, it asks the database for a name that has the type of [First] and whatever setting + role you selected. It puts those together and returns a name.</p>
+        <p>These random combos mean that there's a huge potential number of names - you'll basically never see the same one twice (unless you choose a niche tag like "Victorian")</p>
+        <p>If you ask for lots of names, the app chooses name patterns according to weightings. For example, [firstname][lastname] has a weight of 5, while [firstname] the [adjective] has a weight of 2, so it will show up 2/5ths as often.</p>
+        <p><strong>Bonus tip:</strong> You can choose how many names you want by modifying the query string in the URL. It's 30 by default but theoretically you can do as many as you like!</p>
+        
+        <h2>Where did you get all the names?</h2>
+        <p>AI, baby.</p>
+        <p>I spent a few hours plugging in various requests to the open-ai playground for character names in various categories. Then, I manually reviewed the lists and removed obvious existing IPs (lots of Aragorns and Tyrions). Then I manually encoded all the keys, but this was fairly easy and the AI tended to produce similar names in each bulk set of 100 or so. It took ages, but WAY less time than coming up with thousands of names.</p>
+        <h2>Who are you?</h2>
+        <p>I'm Michael.</p>
+        <p>You can find me on:</p>
         <ul class="button-styles">
             <li><a class="interactive inpage-button" href="https://github.com/tichaelmurvey/">Github</a></li>
             <li><a class="interactive inpage-button" href="https://twitter.com/tichaelmurvey">Twitter</a></li>
