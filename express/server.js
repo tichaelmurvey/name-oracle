@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const serverless = require("serverless-http");
+// const serverless = require("serverless-http");
 const cors = require("cors");
 const path = require("path");
 const ejs = require("ejs");
