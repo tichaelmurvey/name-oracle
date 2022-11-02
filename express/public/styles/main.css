@@ -191,6 +191,14 @@ nav li a , .button-list a{
     margin: auto;
 }
 
+.bodytext p, .bodytext li {
+    text-align: left;
+}
+
+.bodytext.center{
+    text-align: center;
+}
+
 .results {
     display: block;
     margin: auto;
