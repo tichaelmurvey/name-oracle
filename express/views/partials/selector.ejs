@@ -1,6 +1,7 @@
 <select name="<%= name %>" id="<%= name %>" class="interactive">
+  <% console.log("building selector " + name + " with selection " + selected) %>
   <% data.forEach(function(item){ if(item != "all"){ %>
-  <option value="<%= item %>" <%if(selected_data.includes(item)){ %>
+  <option value="<%= item %>" <%if(selected === item){ %>
     selected="selected"<% } %>> <%= item.replace("_", " ") %>
   </option>
   <% }}); %>

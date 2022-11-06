@@ -6,7 +6,7 @@ const queries = require("../modules/queries.js")
 async function renderHome(res){
   const unique_roles = await queries.getUnique("role")
   const unique_settings = await queries.getUnique("setting")
-  res.render("pages/index", {roles: unique_roles, settings: unique_settings, selected: []});
+  res.render("pages/index", {roles: unique_roles, settings: unique_settings, selected_role: undefined, selected_setting: undefined});
 }
 
 async function renderResults(req, res){
@@ -17,7 +17,7 @@ async function renderResults(req, res){
   let quant = req.query.quant;
   console.log("Requested " + role + " from setting " + setting);
   const names = await getnames.getNames(role, setting, quant);
-  res.render("pages/index", {roles: unique_roles, settings: unique_settings, results: names, selected: [req.query.role, req.query.setting]});
+  res.render("pages/index", {roles: unique_roles, settings: unique_settings, results: names, selected_role: req.query.role, selected_setting: req.query.setting});
 
 }
 
