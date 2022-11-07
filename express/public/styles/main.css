@@ -42,10 +42,14 @@ body {
 
 .intro img {
     width: 120px;
+}
+
+/* .intro a {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
+
+} */
 
 .question-body {
     text-align: center;
