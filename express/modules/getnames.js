@@ -45,8 +45,8 @@ class namePattern {
 
 let name_patterns = {
     knight: [
-        //new namePattern("_first of _location", 2),
-        //new namePattern("Sir _first  _last of _location", 3),
+        new namePattern("_first. of ._location", 2),
+        new namePattern("Sir ._first. ._last. of ._location", 1),
         new namePattern("_first., the ._heraldry. knight", 1),
         new namePattern("Sir ._first. ._last", 4),
         new namePattern("Sir ._first. the ._adjective", 2),
@@ -75,17 +75,17 @@ let name_patterns = {
     ],
     noble: [
         new namePattern("_first. ._last", 5),
-        //new namePattern("_first , _title of _location", 5),
+        new namePattern("_first., ._title. of ._location", 5),
         new namePattern("_first. of house ._last", 5),
         new namePattern("_title. ._first", 5),
         new namePattern("_title. ._last", 5),
-        //new namePattern("_honorific _first _last , _title of _location", 5)
+        new namePattern("_honorific. ._first. ._last., ._title. of ._location", 5)
     ],
     wizard: [
         new namePattern("_first. ._last", 6),
         new namePattern("_first. the ._colour", 5),
         new namePattern("_first., Master of ._element", 3),
-        //new namePattern("_first of _location", 5),
+        new namePattern("_first. of ._location", 5),
         new namePattern("_first. the ._adjective", 3)
     ],
     innkeeper: [
