@@ -1,4 +1,4 @@
-<select name="<%= name %>" id="<%= name %>" class="interactive">
+<select name="<%= name %>" id="<%= name %>" class="buttonstyle select">
   <% console.log("building selector " + name + " with selection " + selected) %>
   <% data.forEach(function(item){ if(item != "all"){ %>
   <option value="<%= item %>" <%if(selected === item){ %>

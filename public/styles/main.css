@@ -17,9 +17,10 @@ body {
     background-repeat: repeat;
     background-size: 200px 200px;
     background-color: #fff;
-    margin: 0;
+    margin: 0 20px;
     padding: 0;
-    font-size: 1.7em;
+    /* font-size: 1.7em; */
+    font-size: 30px;
     line-height: 1.5;
     text-align: center;
     display: flex;
@@ -33,6 +34,34 @@ body {
   box-sizing: border-box;
 }
 
+
+/* Button appearance */
+
+.buttonstyle {
+    text-decoration: none;
+    color: black;
+    padding: 5px 15px;
+    border: 2px solid black;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 0 rgb(43, 43, 43);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    transition: top 250ms ease, left 250ms ease;
+}
+
+.buttonstyle:hover {
+    box-shadow: 1px 1px 0 0 rgb(43, 43, 43);
+    position: relative;
+    top: 2px;
+    left: 2px;
+    transition: top 250ms ease, left 250ms ease;
+}
+
+.menu, .home {
+    margin: 0 25px;
+}
+
 .intro {
     width: 95%;
     margin: auto;
@@ -44,28 +73,85 @@ body {
     width: 120px;
 }
 
-/* .intro a {
-    display: block;
-    margin-left: auto;
+.header {
+    position: relative;
+    width: 100%;
+    z-index: 3;
+  }
+   
+  .header ul {
+    list-style: none;
+  }
+
+  .header .home-item {
     margin-right: auto;
+  }
 
-} */
-
+@media only screen and (min-width: 768px) {
+    .menu-wrapper{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+  .main-nav {
+    float: right;
+    width: 100%;
+  }
+  ul.menulist {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    align-items: center;
+  }
+  .header .menu-icon {
+    display: none;
+  }
+  .header .menu-btn {
+    display: none;
+  }
+}
+  
+@media only screen and (max-width: 768px) {
+    nav.main-nav {
+        display: none;
+        margin-bottom: 30px;
+    }
+    .menu-btn {
+        display: block;
+        background-color: transparent;
+        margin-left: auto;
+        margin-right: 20px;
+        /* border: none; */
+        font-size: 1.3em;
+        margin-top: 20px;
+        color: black;
+    }
+    ul.menulist {
+        display: block;
+        width: 100%;
+        margin: auto;
+        padding: 0 20px;
+    }
+    .menulist li {
+        display: block;
+        width: 100%;
+        margin: 15px auto;
+    }
+    .menulist li a {
+        display: block;
+        width: 100%;
+        margin: auto;
+    }
+}
 .question-body {
     text-align: center;
 }
 
 .inpage-button {
     display: inline-block;
-    margin: 35px auto;
-    color: black;
     font-size: 1.7em;
-    line-height: 1.2;
-    border: 3px solid black;
+    line-height: 1.2em;
+    margin: 30px auto;
     padding: 0 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    background: none;
 }
 
 .image-button {
@@ -80,27 +166,12 @@ body {
     width: 50px;
 }
 
-.interactive {
-    box-shadow: 3px 3px 0 0 rgb(43, 43, 43);
-    position: relative;
-    top: 0px;
-    left: 0px;
-    transition: top 250ms ease, left 250ms ease;
-}
-
 *:focus {
     outline: 2px solid black;
 }
 
-#go:hover, select:hover, nav li:hover, .button-list li:hover, .interactive:hover{
-    box-shadow: 1px 1px 0 0 rgb(43, 43, 43);
-    position: relative;
-    top: 2px;
-    left: 2px;
-    transition: top 250ms ease, left 250ms ease;
-}
-
 select {
+    display: inline;
     appearance: none;
     border: 3px solid black;
     padding: 5px 10px;
@@ -129,13 +200,7 @@ select {
 .results-main {
     margin: 0 25px;
 }
-@media screen and (max-width: 700px){
-    select {
-        display: block;
-        margin: auto;
-    }
 
-}
 /* select::after {
     content: "";
     width: 0.8em;
@@ -153,39 +218,16 @@ h1{
     font-weight: 400;
 }
 
-nav ul , .button-list{
-    list-style: none;
-    display: flex;
-}
-
-nav ul {
-    justify-content: flex-end;
-
-}
-
 .button-list {
     padding: 0;
     margin: 0;
     justify-content: flex-start;
-}
-
-
-
-nav li , .button-list li{
-    margin: 0 25px;
-    border: 2px solid black;
-    border-radius: 8px;
+    list-style: none;
+    display: flex;
 }
 
 .button-list li:first-child {
     margin-left: 0;
-}
-
-nav li a , .button-list a{
-    text-decoration: none;
-    color: black;
-    display: block;
-    padding: 5px 15px;
 }
 
 .bodytext {
@@ -224,6 +266,13 @@ nav li a , .button-list a{
 .results p {
     margin: 12px;
 }
+@media screen and (max-width: 700px){
+    select {
+        display: block;
+        margin: auto;
+    }
+}
+
 @media screen and (max-width: 700px) {
  .results {
      columns: 1;
@@ -287,3 +336,5 @@ footer {
     font-family: 'Dekko', cursive;
     font-size: 1.2em;
 }
+
+
