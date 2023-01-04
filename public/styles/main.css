@@ -249,7 +249,7 @@ h1{
 .results {
     display: block;
     margin: auto;
-    width: max-content;
+    /* width: max-content; */
     border: 3px solid black;
     border-radius: 8px;
     text-align: center;
@@ -261,6 +261,7 @@ h1{
 .results.many{
     padding-top: 20px;
     font-size: 1em;
+    max-width: 90%;
 }
 
 @media only screen and (min-width: 768px){
