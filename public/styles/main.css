@@ -39,6 +39,7 @@ body {
 
 .buttonstyle {
     text-decoration: none;
+    background-color: transparent;
     color: black;
     padding: 5px 15px;
     border: 2px solid black;
@@ -258,9 +259,14 @@ h1{
 }
 
 .results.many{
-    columns: 2;
     padding-top: 20px;
     font-size: 1em;
+}
+
+@media only screen and (min-width: 768px){
+    .results.many {
+        columns: 2;
+    }
 }
 
 .results p {
