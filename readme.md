@@ -2,8 +2,6 @@
 
 I built a full stack web application to help nerds come up with names for their RPG characters. It’s called The Name Oracle.
 
-Here’s a link to the [live site](https://www.nameoracle.org/).
-
 ## What is this thing
 
 Some people (me) spend their time playing imagination storytelling games involving dice. Imagination mostly comes naturally, but coming up with names can be really hard in the moment!
